@@ -12,181 +12,192 @@
     <style>
         :root {
             --dark: #050505;
+            --surface: #0f0f0f;
             --gold: #D4AF37;
             --text: #F8FAFC;
-            --accent-red: #E11D48;
+            --border: rgba(212, 175, 55, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            background-color: var(--dark); 
+            color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
 
-        body {
-            background-color: var(--dark);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+
+        /* --- PREMIUM HERO --- */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            position: relative; 
             overflow: hidden;
+            padding: 20px;
         }
 
-        /* 1. THE INDUSTRIAL BACKGROUND ENGINE */
-        .industrial-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* High-impact industrial machinery visual */
-            background: 
-                linear-gradient(rgba(5, 5, 5, 0.92), rgba(5, 5, 5, 0.75)), 
-                url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-            filter: grayscale(100%) contrast(110%);
-            animation: panEffect 30s infinite alternate linear;
+        .industrial-bg { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.75)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; z-index: -2; 
+            filter: grayscale(100%) contrast(120%);
+            animation: panEffect 20s infinite alternate linear;
         }
 
-        /* Subtle Blueprint Grid Texture */
-        body::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(212, 175, 55, 0.15) 0.5px, transparent 0.5px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
+        @keyframes panEffect { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        .hero::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.1) 0.5px, transparent 0.5px);
+            background-size: 30px 30px; z-index: -1;
         }
 
-        @keyframes panEffect {
-            from { transform: scale(1) translate(0, 0); }
-            to { transform: scale(1.1) translate(-1%, -1%); }
+        .hero h1 { 
+            font-size: clamp(2.8rem, 12vw, 6.5rem); 
+            font-weight: 900; letter-spacing: -3px; line-height: 0.85; text-transform: uppercase; margin-bottom: 30px; 
         }
 
-        /* 2. THE CONTENT BOX */
-        .content { 
-            padding: 40px; 
-            z-index: 10; 
-            max-width: 900px;
-            animation: fadeIn 1.5s ease-out;
+        /* --- SECTIONS --- */
+        .section { padding: clamp(80px, 15vh, 120px) 0; border-top: 1px solid var(--border); }
+        .gold-tag { color: var(--gold); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem; display: block; margin-bottom: 20px; }
+
+        /* --- VISION CARDS --- */
+        .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+        .vision-card { background: var(--surface); padding: 50px; border-left: 4px solid var(--gold); border-top: 1px solid var(--border); }
+        .vision-card h3 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: -1px; }
+
+        /* --- WHITE INFINITE SCROLL STRIP --- */
+        .client-strip { 
+            padding: 60px 0; 
+            background: #FFFFFF; 
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden; 
+            position: relative;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .client-strip::before, .client-strip::after {
+            content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;
+        }
+        .client-strip::before { left: 0; background: linear-gradient(to right, #FFFFFF, transparent); }
+        .client-strip::after { right: 0; background: linear-gradient(to left, #FFFFFF, transparent); }
+
+        .scroll-track { display: flex; width: calc(250px * 8); animation: scroll 25s linear infinite; align-items: center; }
+        .scroll-track img { height: 45px; width: 200px; object-fit: contain; margin: 0 40px; filter: grayscale(100%) opacity(0.7); transition: 0.3s ease; }
+        .scroll-track img:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 4)); }
         }
 
-        /* 3. THE BRAND LOGO LOCKUP */
-        .brand-header {
-            margin-bottom: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* --- THE ELITE FORM --- */
+        .form-card { background: var(--surface); padding: clamp(30px, 5vw, 60px); border: 2px solid var(--border); max-width: 850px; margin: 0 auto; position: relative; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        
+        input, textarea { width: 100%; background: #080808; border: 1px solid #222; border-left: 3px solid #222; padding: 20px; color: white; font-family: inherit; transition: 0.3s; outline: none; }
+        input:focus, textarea:focus { border-left-color: var(--gold); background: #111; }
+
+        .btn-gold { width: 100%; padding: 25px; background: var(--gold); color: #000; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; letter-spacing: 3px; font-size: 1rem; transition: 0.3s; }
+        .btn-gold:hover { background: #fff; transform: translateY(-5px); }
+
+        /* --- FLOATING ELEMENTS --- */
+        .whatsapp-float { position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 32px; z-index: 100; box-shadow: 0 15px 35px rgba(0,0,0,0.4); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { letter-spacing: -1px; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 26px; }
+            .client-strip::before, .client-strip::after { width: 50px; }
         }
-
-        .text-logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: var(--text);
-        }
-
-        .text-logo span { color: var(--gold); }
-
-        .sub-label {
-            font-size: 0.7rem;
-            letter-spacing: 14px;
-            color: var(--gold);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 8px;
-            opacity: 0.8;
-        }
-
-        /* 4. THE INDUSTRIAL HEADLINE */
-        h1 {
-            font-size: clamp(2.8rem, 11vw, 6rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -5px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-        }
-
-        .highlight { color: var(--gold); }
-
-        p.description {
-            color: #94a3b8;
-            font-size: 1.15rem;
-            margin-bottom: 45px;
-            max-width: 550px;
-            margin-inline: auto;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-        }
-
-        /* 5. THE CTA BUTTON */
-        .btn-whatsapp {
-            padding: 22px 50px;
-            background-color: var(--gold);
-            color: #000;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            border: 2px solid var(--gold);
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-10px);
-            background-color: transparent;
-            color: var(--gold);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
-        }
-
-        /* FOOTER CREDIT */
-        .footer-tag {
-            position: absolute;
-            bottom: 40px;
-            font-size: 0.65rem;
-            color: #444;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .footer-tag span { color: #666; }
     </style>
 </head>
 <body>
 
-    <div class="industrial-bg"></div>
+    <a href="https://wa.me/260974373245" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <div class="content">
-        <div class="brand-header">
-            <h2 class="text-logo">DEFINED <span>STYLE</span></h2>
-            <p class="sub-label">CLOTHING</p>
+    <header class="hero">
+        <div class="industrial-bg"></div>
+        <div class="hero-content">
+            <div style="font-weight: 800; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 10px;">DEFINED <span>STYLE</span></div>
+            <p style="letter-spacing: 12px; font-size: 0.6rem; color: var(--gold); margin-bottom: 40px; font-weight: 800;">CLOTHING</p>
+            <h1>MASTER <br> <span style="color:var(--gold)">TAILORING</span> <br> IN PROGRESS</h1>
+            <a href="#about" class="btn-gold" style="width: auto; padding: 18px 40px; font-size: 0.8rem;">Our Heritage</a>
         </div>
-        
-        <h1>MASTER <br> <span class="highlight">TAILORING</span> <br> IN PROGRESS</h1>
-        
-        <p class="description">
-            Lusaka's premium manufacturing hub is undergoing a digital evolution. 
-            Quality is worth the wait.
-        </p>
-        
-        <a href="https://wa.me/260974373245?text=Hello%20DSC,%20I%20am%20inquiring%20about%20your%20manufacturing%20services." class="btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> Instant Inquiry
-        </a>
+    </header>
+
+    <section id="about" class="section container">
+        <div style="max-width: 850px;">
+            <span class="gold-tag">Thriving Local Excellence</span>
+            <h2 style="font-size: clamp(2.5rem, 8vw, 3.5rem); letter-spacing: -2px; line-height: 1; margin-bottom: 30px;">13 Years Serving <br> the Fashion Industry.</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8;">Defined Style Clothing is a thriving local clothing manufacturing company located in the heart of Lusaka, Zambia. We have been serving the industry with dedication and passion for over 13 years.</p>
+        </div>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <span class="gold-tag">The Goal</span>
+                <h3>Our Vision</h3>
+                <p style="color: #94a3b8;">To become the leading manufacturer of custom made clothes by providing high quality tailoring services supported by top productions and prompt delivery.</p>
+            </div>
+            <div class="vision-card">
+                <span class="gold-tag">The Commitment</span>
+                <h3>Our Mission</h3>
+                <p style="color: #94a3b8;">To provide top-notch clothing manufacturing services while helping turn creative designs into reality and fostering community within the fashion industry.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="client-strip">
+        <span style="color: #888; text-align: center; display: block; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 20px;">Trusted Partnerships</span>
+        <div class="scroll-track">
+            <img src="assets/logo-orange.png" alt="ORANGE">
+            <img src="assets/logo-aerobics.png" alt="Aerobics Mania">
+            <img src="assets/logo-mandahill.png" alt="Mandahill Mall">
+            <img src="assets/logo-fitbyvatra.png" alt="Fit by Vatra">
+            <img src="assets/logo-dsf.png" alt="Defined Style Fitness">
+            <img src="assets/logo-fnb.png" alt="FNB">
+            <img src="assets/logo-zanaco.png" alt="Zanaco">
+            <img src="assets/logo-absa.png" alt="ABSA">
+            <img src="assets/logo-zma.png" alt="Zambia Medical Association">
+        </div>
     </div>
 
-    <p class="footer-tag">Powered by <span>Purple Worth Studios & Pwhost</span></p>
+    <section id="contact" class="section container">
+        <div class="form-card">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 0.5rem; color: #222; letter-spacing: 2px;">DSC-SPEC-V1.0</div>
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="gold-tag">Project Inquiry</span>
+                <h2 style="font-size: clamp(2rem, 8vw, 3rem); letter-spacing: -2px;">REQUEST A <span style="color: var(--gold);">QUOTE</span></h2>
+            </div>
+
+            <form action="https://formspree.io/f/YOUR_ID" method="POST" onsubmit="window.open('https://wa.me/260974373245?text=Hello,%20I%20just%20sent%20a%20technical%20quote%20request.', '_blank');">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label class="gold-tag" style="margin-bottom: 10px; font-size: 0.6rem;">Client / Company</label>
+                        <input type="text" name="name" placeholder="John Doe / Ltd" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="gold-tag" style="margin-bottom: 10px; font-size: 0.6rem;">Email Protocol</label>
+                        <input type="email" name="email" placeholder="email@domain.com" required>
+                    </div>
+                </div>
+                <div class="input-group" style="margin-bottom: 30px;">
+                    <label class="gold-tag" style="margin-bottom: 10px; font-size: 0.6rem;">Technical Specifications</label>
+                    <textarea name="message" rows="5" placeholder="Quantity, sizing, clothing type..." required></textarea>
+                </div>
+                <button type="submit" class="btn-gold">Confirm Specification</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="padding: 80px 0; text-align: center; font-size: 0.6rem; color: #444; letter-spacing: 4px; text-transform: uppercase; border-top: 1px solid var(--border);">
+        Powered by Purple Worth Studios & Pwhost
+    </footer>
 
 </body>
 </html>
