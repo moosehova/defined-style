@@ -3,197 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Defined Style Clothing | Industrial Tailoring & Branding</title>
+    <title>Defined Style Clothing | Industrial Manufacturing & Branding</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root { 
-            --dark: #050505; 
-            --surface: #0f0f0f; 
-            --gold: #D4AF37; 
-            --text: #F8FAFC; 
-            --border: rgba(212, 175, 55, 0.15); 
-            --side-pad: 7%; /* The 'Breathing Room' Variable */
-            --logo-width: 180px;
-            --logo-gap: 60px;
-            --total-logos: 8;
-        }
-
-        /* --- BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            background-color: var(--dark); 
-            color: var(--text); 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-            width: 100%;
-        }
-
-        .container { 
-            width: 100%; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 0 var(--side-pad); 
-        }
-
-        /* --- HEADER --- */
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            padding: 15px 0; background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo img { height: 30px; width: auto; }
-
-        /* --- HERO --- */
-        .hero { 
-            height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding-top: 80px;
-        }
-        .industrial-bg { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.7)), 
-                        url('https://images.unsplash.com/photo-1673786586360-19e8f8acb53f?q=80&w=870&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; z-index: -2; 
-            filter: contrast(115%); animation: panEffect 25s infinite alternate ease-in-out;
-        }
-        @keyframes panEffect { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-        .hero h1 { 
-            font-size: clamp(2.2rem, 10vw, 6rem); 
-            font-weight: 900; letter-spacing: -2px; line-height: 0.9; text-transform: uppercase; margin-bottom: 25px; 
-        }
-
-        /* --- SECTIONS --- */
-        .section { padding: 100px 0; border-top: 1px solid var(--border); }
-        .gold-tag { color: var(--gold); font-weight: 800; letter-spacing: 4px; text-transform: uppercase; font-size: 0.65rem; display: block; margin-bottom: 20px; }
-
-        /* --- FULL-WIDTH WHITE MARQUEE --- */
-        .client-strip { 
-            padding: 60px 0; background: #FFFFFF; overflow: hidden; position: relative; 
-            width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
-            border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        .scroll-track { 
-            display: flex; 
-            width: calc((var(--logo-width) + var(--logo-gap)) * (var(--total-logos) * 2)); 
-            animation: scroll 30s linear infinite; 
-            align-items: center;
-        }
-        .scroll-track img { 
-            width: var(--logo-width); margin-right: var(--logo-gap); height: 45px; object-fit: contain; flex-shrink: 0;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-1 * (var(--logo-width) + var(--logo-gap)) * var(--total-logos))); }
-        }
-
-        /* --- CARDS & FORM --- */
-        .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 50px; }
-        .vision-card { background: var(--surface); padding: 40px; border-left: 4px solid var(--gold); border-top: 1px solid var(--border); }
-
-        .form-card { background: var(--surface); padding: clamp(30px, 6vw, 60px); border: 2px solid var(--border); max-width: 850px; margin: 0 auto; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 20px; }
-        
-        input, textarea { width: 100%; background: #080808; border: 1px solid #222; border-left: 3px solid #222; padding: 18px; color: white; font-family: inherit; outline: none; }
-        .btn-gold { width: 100%; padding: 22px; background: var(--gold); color: #000; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; letter-spacing: 2px; }
-
-        /* --- FOOTER --- */
-        footer { background: #080808; padding: 60px 0 30px; border-top: 1px solid var(--border); text-align: center; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-
-        @media (max-width: 768px) {
-            .section { padding: 80px 0; }
-            .hero h1 { letter-spacing: -1px; }
-        }
-    </style>
+    <script src="main.js" defer></script>
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <div class="nav-logo"><img src="assets/logo-main.png" alt="Defined Style"></div>
-            <a href="#contact" style="color: var(--gold); text-decoration: none; font-weight: 800; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;">Request Quote</a>
-        </div>
-    </nav>
-
-    <a href="https://wa.me/260974373245" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
     <header class="hero">
         <div class="industrial-bg"></div>
-        <div class="hero-content container">
-            <span class="gold-tag">Lusaka, Zambia</span>
-            <h1>MASTER <br> <span style="color:var(--gold)">TAILORING</span> <br> IN PROGRESS</h1>
-            <a href="#about" class="btn-gold" style="width: auto; display: inline-block; padding: 15px 40px; margin-top: 20px;">Our Heritage</a>
+        <div class="container">
+            <h1>DEFINE YOUR STYLE.<br><span style="color:var(--gold)">WE CREATE IT.</span></h1>
+            <p>Premium custom clothing manufacturing for individuals, brands, schools, corporates, sports teams, and organizations across Zambia. From concept to finished garment, we bring your vision to life with precision, creativity, and quality craftsmanship.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="shop.html" class="btn btn-gold">Shop Now</a>
+                <a href="https://wa.me/260974373245" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+            </div>
         </div>
     </header>
 
     <section id="about" class="section container">
-        <span class="gold-tag">13 Years of Craft</span>
-        <h2 style="font-size: clamp(2.2rem, 8vw, 3.5rem); letter-spacing: -1px; line-height: 1; margin-bottom: 30px;">Established Local Manufacturing Hub</h2>
-        <p style="color: #94a3b8; font-size: 1.1rem; max-width: 800px;">Defined Style Clothing is a thriving local clothing manufacturing company located in the heart of Lusaka, Zambia. We have been serving the industry with dedication for over 13 years.</p>
-        
-        <div class="vision-grid">
-            <div class="vision-card">
-                <span class="gold-tag">Our Vision</span>
-                <p style="color: #94a3b8;">Leading the way in custom tailoring excellence and prompt delivery.</p>
+        <span class="gold-tag">Who We Are</span>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px;">
+            <div>
+                <h2 style="font-size: 2.8rem; line-height: 1; margin-bottom: 25px; letter-spacing: -2px;">ABOUT DEFINED <br>STYLE CLOTHING</h2>
+                <p style="color:#94a3b8; line-height: 1.8; margin-bottom: 20px;">Defined Style Clothing is a Zambian clothing manufacturing and branding company specializing in custom apparel production, fashion branding, sportswear, workwear, uniforms, promotional clothing, and corporate wear.</p>
+                <p style="color:#94a3b8; line-height: 1.8;">Whether you're building a fashion brand, outfitting your staff, creating uniforms, or launching merchandise, we deliver premium results tailored to your needs.</p>
             </div>
-            <div class="vision-card">
-                <span class="gold-tag">Our Mission</span>
-                <p style="color: #94a3b8;">Turning creative designs into reality while fostering community within the fashion industry.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div class="card" style="padding: 25px; font-size: 0.75rem; font-weight: 800; border-left: 3px solid var(--gold);">Custom Manufacturing</div>
+                <div class="card" style="padding: 25px; font-size: 0.75rem; font-weight: 800; border-left: 3px solid var(--gold);">Bulk Production</div>
+                <div class="card" style="padding: 25px; font-size: 0.75rem; font-weight: 800; border-left: 3px solid var(--gold);">Fashion Branding</div>
+                <div class="card" style="padding: 25px; font-size: 0.75rem; font-weight: 800; border-left: 3px solid var(--gold);">Corporate Wear</div>
             </div>
         </div>
     </section>
 
     <div class="client-strip">
-        <span style="color: #888; text-align: center; display: block; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;">Trusted Partnerships</span>
+        <span style="color: #888; text-align: center; display: block; font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 25px;">Trusted Partners</span>
         <div class="scroll-track">
-            <img src="assets/logo-fnb.png" alt="FNB">
-            <img src="assets/logo-aerobics.png" alt="Aerobics">
-            <img src="assets/logo-mandahill.png" alt="Mandahill">
-            <img src="assets/logo-absa.png" alt="Absa">
-            <img src="assets/logo-fitbyvatra.png" alt="Fit By Vatra">
-            <img src="assets/logo-zanaco.png" alt="Zanaco">
-            <img src="assets/logo-orange.png" alt="Orange">
-            <img src="assets/logo-mfinance.png" alt="Mfinance">
-            <img src="assets/logo-fnb.png" alt="FNB">
-            <img src="assets/logo-aerobics.png" alt="Aerobics">
-            <img src="assets/logo-mandahill.png" alt="Mandahill">
-            <img src="assets/logo-absa.png" alt="Absa">
-            <img src="assets/logo-fitbyvatra.png" alt="Fit By Vatra">
-            <img src="assets/logo-zanaco.png" alt="Zanaco">
-            <img src="assets/logo-orange.png" alt="Orange">
-            <img src="assets/logo-mfinance.png" alt="Mfinance">
+            <img src="assets/logo-fnb.png" alt="FNB"><img src="assets/logo-aerobics.png" alt="Aerobics"><img src="assets/logo-mandahill.png" alt="Hill"><img src="assets/logo-absa.png" alt="Absa"><img src="assets/logo-fitbyvatra.png" alt="Vatra"><img src="assets/logo-zanaco.png" alt="Zanaco"><img src="assets/logo-orange.png" alt="Orange"><img src="assets/logo-mfinance.png" alt="Mfin">
+            <img src="assets/logo-fnb.png" alt="FNB"><img src="assets/logo-aerobics.png" alt="Aerobics"><img src="assets/logo-mandahill.png" alt="Hill"><img src="assets/logo-absa.png" alt="Absa"><img src="assets/logo-fitbyvatra.png" alt="Vatra"><img src="assets/logo-zanaco.png" alt="Zanaco"><img src="assets/logo-orange.png" alt="Orange"><img src="assets/logo-mfinance.png" alt="Mfin">
         </div>
     </div>
 
-    <section id="contact" class="section container">
+    <section id="contact-form" class="section container">
         <div class="form-card">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <span class="gold-tag">Technical Inquiry</span>
-                <h2 style="font-size: clamp(2rem, 8vw, 3rem); letter-spacing: -2px;">REQUEST A <span style="color: var(--gold);">QUOTE</span></h2>
-            </div>
-            <form action="https://formspree.io/f/YOUR_ID" method="POST" onsubmit="window.open('https://wa.me/260974373245?text=Hello,%20I%20just%20sent%20a%20technical%20quote%20request.', '_blank');">
-                <div class="form-grid">
-                    <input type="text" name="name" placeholder="Name or Company" required>
-                    <input type="email" name="email" placeholder="email@domain.com" required>
-                </div>
-                <textarea name="message" rows="5" placeholder="Quantity, sizing, type..." required style="margin-bottom: 25px;"></textarea>
-                <button type="submit" class="btn-gold">Confirm Specification</button>
+            <span class="gold-tag">Bulk Inquiry</span>
+            <h2 style="margin-bottom:30px;">Request A Technical Quote</h2>
+            <form action="https://formspree.io/f/YOUR_ID" method="POST">
+                <input type="text" name="name" placeholder="Full Name / Company" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="5" placeholder="Order details (Quantity, Sizing, etc.)" required></textarea>
+                <button type="submit" class="btn btn-gold" style="width:100%">Send Specification</button>
             </form>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <img src="assets/logo-main.png" alt="Defined Style" style="height: 35px; margin-bottom: 20px;">
-            <p style="color: #444; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;">
-                © 2026 DEFINED STYLE CLOTHING | POWERED BY PURPLE WORTH STUDIOS
-            </p>
-        </div>
-    </footer>
 
 </body>
 </html>
